@@ -44,16 +44,14 @@ public class FinCrawl {
             Thread.sleep(interval);
         }
         Date date = new Date();
-        db.updateStockPrice(selectedSymbol, stockPrice, new SimpleDateFormat("dd MM yyyy hh:mm:ss").format(date));
+        db.updateStockPrice(selectedSymbol, stockPrice, new SimpleDateFormat("dd MM yyyy hh:mm:ss aaa").format(date));
     }
     
     public static void main(String[] args) throws Exception{
         //readCsv("EQUITY_L.csv");
         //db.testDB();
-        
-        String selectedSymbol = db.searchStockDB("suzl");
+        String selectedSymbol = db.searchStockDB("relian");
         System.out.println("Symbol : " + selectedSymbol);        
-        
         pollStock(selectedSymbol, 1000, 1);
         //wc.getHistorical(selectedSymbol);
     }

@@ -85,7 +85,7 @@ public class DBConnect{
         Connection con = DriverManager.getConnection(URL, USER, PASS);
         Statement statement = con.createStatement();
         //using stored procedures makes life easy
-        statement.execute("call updateStockPrice('" + symbol + "', " + price + ", to_date('"+date+ "', 'dd mm yyyy hh:mi:ss'))");
+        statement.execute("call updateStockPrice('" + symbol + "', " + price + ", to_date('"+date+ "', 'dd mm yyyy hh:mi:ss am'))");
         con.close();
         System.out.println(symbol + " updated");
         }
