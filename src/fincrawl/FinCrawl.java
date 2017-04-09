@@ -16,6 +16,7 @@ public class FinCrawl {
     static Scanner in = new Scanner(System.in);
     static DBConnect db = new DBConnect();
     static WebCrawler wc = new WebCrawler();
+    static BuySellTriggers bst = new BuySellTriggers();
     
     public static void readCsv(String fileName) throws Exception{
         String splitBy = ",";
@@ -54,5 +55,6 @@ public class FinCrawl {
         System.out.println("Symbol : " + selectedSymbol);        
         pollStock(selectedSymbol, 1000, 1);
         //wc.getHistorical(selectedSymbol);
+        bst.insertStock(selectedSymbol);
     }
 }

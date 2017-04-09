@@ -94,4 +94,13 @@ public class DBConnect{
         }
     }
     
+    int insertStockTrigger(String symbol, Double buyPrice, Double stopLoss, Double profitBook, int status) throws SQLException{
+        DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+        Connection con = DriverManager.getConnection(URL, USER, PASS);
+        Statement statement = con.createStatement();
+        String query = "call updateStockTriggers('" + symbol + "', " + buyPrice + ", " + stopLoss + ", " + profitBook + ", " + status + ")";
+        statement.execute(query);
+        con.close();
+        return 1;
+    }
 }
