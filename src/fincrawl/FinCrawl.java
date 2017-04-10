@@ -51,7 +51,7 @@ public class FinCrawl {
     public static void main(String[] args) throws Exception{
         //readCsv("EQUITY_L.csv");
         //db.testDB();
-        String selectedSymbol = db.searchStockDB("relian");
+        String selectedSymbol = db.searchStockDB("suzlon");
         System.out.println("Symbol : " + selectedSymbol);        
         pollStock(selectedSymbol, 1000, 1);
         //wc.getHistorical(selectedSymbol);
