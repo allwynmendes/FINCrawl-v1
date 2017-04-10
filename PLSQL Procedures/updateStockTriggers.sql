@@ -2,6 +2,8 @@ select * from stocks;
 
 desc stockstrigger;
 
+select * from stockstrigger;
+
 create or replace procedure updateStockTriggers(vsymbol stocks.symbol%type, vbuyprice stockstrigger.buyprice%type, 
     vstoploss stockstrigger.stoploss%type, vprofitbook stockstrigger.profitbook%type, vstatus stockstrigger.status%type) 
 is
@@ -11,7 +13,7 @@ begin
     open c1;
     fetch c1 into stockrec;
     if c1%found then
-         update stockstrigger set buyprice = vbuyprice, stoploss = vstoploss, vprofitbook = vprofitbook where symbol = vsymbol;
+         update stockstrigger set buyprice = vbuyprice, stoploss = vstoploss, profitbook = vprofitbook where symbol = vsymbol;
          dbms_output.put_line('IN UPDATE');
     else
         insert into stockstrigger values (vsymbol, vbuyprice, vstoploss, vprofitbook, vstatus);
@@ -19,5 +21,4 @@ begin
 end;
 
 show errors;
-
 set serveroutput on;
