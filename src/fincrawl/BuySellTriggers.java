@@ -32,9 +32,29 @@ public class BuySellTriggers {
      * price trigger range set by user
     */
     void pollStockTrigger(String symbol) throws Exception{
+        Double[] d1 = new Double[5];
+        Double buyPrice, stopLoss, profitBook, temp;
+        int returnStatus, stockStatus, i = 0;
         map = db.getStockTrigger(symbol);
         for(Map.Entry m :map.entrySet()){
-            System.out.println(m.getKey() + " " + m.getValue());
+            d1[i] = (Double)m.getValue();
+            i++;
         }
+        temp = d1[0];
+            returnStatus = temp.intValue();
+            if (returnStatus == 1.0){
+                buyPrice = d1[1];
+                stopLoss = d1[2];
+                profitBook = d1[3];
+                temp = (Double)d1[4];
+                stockStatus = temp.intValue();
+                System.out.println("Stock       : " + symbol);
+                System.out.println("Buy Price   : " + buyPrice);
+                System.out.println("Stop Loss   : " + stopLoss);
+                System.out.println("Profit Book : " + profitBook);
+                System.out.println("Status      : " + stockStatus);
+            }else{
+                System.out.println("Stock does not exist in stockstrigger");
+            }
     }
 }
