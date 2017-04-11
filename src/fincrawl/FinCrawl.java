@@ -55,6 +55,7 @@ public class FinCrawl {
         System.out.println("Symbol : " + selectedSymbol);        
         pollStock(selectedSymbol, 1000, 1);
         //wc.getHistorical(selectedSymbol);
-        bst.insertStock(selectedSymbol);
+        //bst.insertStock(selectedSymbol);
+        bst.pollStockTrigger(selectedSymbol);
     }
 }

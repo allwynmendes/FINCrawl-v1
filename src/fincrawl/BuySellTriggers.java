@@ -4,10 +4,11 @@
  */
 package fincrawl;
 
+import java.util.*;
 import java.util.Scanner;
 
 public class BuySellTriggers {
-    
+    Map<Integer, Double> map = new HashMap<Integer, Double>();
     static DBConnect db = new DBConnect();
     
     //stopLoss and profitBook is in Percentage
@@ -15,11 +16,11 @@ public class BuySellTriggers {
         Scanner in = new Scanner(System.in);
         System.out.println("Price and Trigger Values for " + symbol);
         System.out.println("*******************************************");
-        System.out.println("Buy Price     : ");
+        System.out.println("Buy Price         : ");
         double buyPrice = in.nextDouble(); 
-        System.out.println("Stop Loss %   : ");
+        System.out.println("Stop Loss Price   : ");
         double stopLoss = in.nextDouble(); 
-        System.out.println("Profit Book % : ");
+        System.out.println("Profit Book Price : ");
         double profitBook = in.nextDouble();
         int status = 1;
         int success = db.insertStockTrigger(symbol, buyPrice, stopLoss, profitBook, status);
@@ -27,4 +28,13 @@ public class BuySellTriggers {
             System.out.println("Stock Successfully Inserted");
     }
     
+    /*This functions polls Google Finance for 
+     * price trigger range set by user
+    */
+    void pollStockTrigger(String symbol) throws Exception{
+        map = db.getStockTrigger(symbol);
+        for(Map.Entry m :map.entrySet()){
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+    }
 }
