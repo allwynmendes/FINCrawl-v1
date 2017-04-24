@@ -23,6 +23,7 @@ public class BuySellTriggers {
         System.out.println("Profit Book Price : ");
         double profitBook = in.nextDouble();
         int status = 1;
+        
         int success = db.insertStockTrigger(symbol, buyPrice, stopLoss, profitBook, status);
         if (success == 1)
             System.out.println("Stock Successfully Inserted");
